@@ -7,7 +7,7 @@ import os
 print("Current working directory:", os.getcwd())
 scopes = ["https://www.googleapis.com/auth/spreadsheets"]
 
-creds = Credentials.from_service_account_file("assets/backend/credentials.json", scopes=scopes)
+creds = Credentials.from_service_account_file("path-to-your-credentials.json", scopes=scopes)
 
 client = gspread.authorize(creds)
 

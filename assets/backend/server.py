@@ -21,7 +21,7 @@ from crop_predictor import CropYieldPredictor
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "assets/backend/credentials.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "path-to-your-credentials.json"
 client = vision.ImageAnnotatorClient()
 
 # Initialize the advisor
