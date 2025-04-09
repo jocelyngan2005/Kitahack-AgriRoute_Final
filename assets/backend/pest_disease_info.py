@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 # Configure the Gemini API with your API key
 def configure_genai():
-    genai.configure(api_key="AIzaSyB_haRU_xiO1kHVeL4_U1YuGElZAOMGv8s")
+    genai.configure(api_key="YOUR_API_KEY")
 
 class PestInfo:
     

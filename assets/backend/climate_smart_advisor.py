@@ -6,7 +6,7 @@ import json
 # Configure the Gemini API with your API key
 # Replace with your actual API key
 def configure_genai():
-    genai.configure(api_key="AIzaSyB_haRU_xiO1kHVeL4_U1YuGElZAOMGv8s")
+    genai.configure(api_key="YOUR_API_KEY")
 
 class ClimateSmartFarmingAdvisor:
     """Class to provide climate-smart farming recommendations using Gemini API."""
