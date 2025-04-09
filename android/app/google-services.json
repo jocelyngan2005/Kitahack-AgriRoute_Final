@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "9587985826",
+    "project_id": "sustainable-food-8bedf",
+    "storage_bucket": "sustainable-food-8bedf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9587985826:android:8abf679f34bedf4bf076fb",
+        "android_client_info": {
+          "package_name": "com.example.climate_smart_farming"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDXEU5-Yp49jv_m7zwnSkltfKYtxxogFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9587985826:android:762ee59362b0ffa3f076fb",
+        "android_client_info": {
+          "package_name": "com.example.climate_smart_farming_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDXEU5-Yp49jv_m7zwnSkltfKYtxxogFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
