@@ -72,9 +72,7 @@ Our solution directly contributes to:
 - Suggests sustainable farming methods
 
 ## 📱 App Demo
-<video src="showcase.mp4" width="20%" controls>
-  Your browser does not support the video tag.
-</video>
+![App Showcase](demo.gif)
 
 
 ## 🔧 Installation & Setup
@@ -95,6 +93,7 @@ Our solution directly contributes to:
 2. **Set Up Python Backend**
    ```bash
    #Navigate to backend directory
+   cd assets
    cd backend
 
    #Create and activate virtual environment
@@ -110,6 +109,7 @@ Our solution directly contributes to:
    - Enable Cloud Vision API and Gemini API in Google Cloud Console
 5. **Run the system**
    ```bash
+   cd assets
    cd backend
    python server.py
 6. **Run the application**
