@@ -660,30 +660,35 @@ class _SearchScreenState extends State<SearchScreen> {
   }
   
   Future<void> _searchRecommendations() async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
+  if (_formKey.currentState!.validate()) {
+    setState(() {
+      _isLoading = true;
+    });
+    
+    try {
+      final region = _regionController.text;
+      final cropType = _cropController.text;
+      final climateChallenge = _climateController.text.isNotEmpty
+          ? _climateController.text
+          : null;
       
-      try {
-        final region = _regionController.text;
-        final cropType = _cropController.text;
-        final climateChallenge = _climateController.text.isNotEmpty
-            ? _climateController.text
-            : null;
-        
-        final results = await _farmingService.getClimateSmartRecommendations(
-          location: region,
-          cropType: cropType,
-          climateChallenge: climateChallenge,
-        );
-        
+      final results = await _farmingService.getClimateSmartRecommendations(
+        location: region,
+        cropType: cropType,
+        climateChallenge: climateChallenge,
+      );
+      
+      // Check if widget is still mounted before calling setState
+      if (mounted) {
         setState(() {
           _searchResults = results;
           _hasSearched = true;
           _isLoading = false;
         });
-      } catch (e) {
+      }
+    } catch (e) {
+      // Check if widget is still mounted before calling setState
+      if (mounted) {
         setState(() {
           _searchResults = null;
           _hasSearched = true;
@@ -695,42 +700,48 @@ class _SearchScreenState extends State<SearchScreen> {
       }
     }
   }
+}
+
+Future<void> _getCurrentLocationRecommendations() async {
+  if (_cropController.text.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Please enter a crop type')),
+    );
+    return;
+  }
   
-  Future<void> _getCurrentLocationRecommendations() async {
-    if (_cropController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter a crop type')),
-      );
-      return;
+  setState(() {
+    _isLoading = true;
+  });
+  
+  try {
+    // Request location permission before proceeding
+    bool hasPermission = await requestLocationPermission();
+    if (!hasPermission) {
+      throw Exception("Location permission is required to use this feature");
     }
     
-    setState(() {
-      _isLoading = true;
-    });
+    final cropType = _cropController.text;
+    final climateChallenge = _climateController.text.isNotEmpty
+        ? _climateController.text
+        : null;
     
-    try {
-      // Request location permission before proceeding
-      bool hasPermission = await requestLocationPermission();
-      if (!hasPermission) {
-        throw Exception("Location permission is required to use this feature");
-      }
-      
-      final cropType = _cropController.text;
-      final climateChallenge = _climateController.text.isNotEmpty
-          ? _climateController.text
-          : null;
-      
-      final results = await _farmingService.getRecommendationsForCurrentLocation(
-        cropType: cropType,
-        climateChallenge: climateChallenge,
-      );
-      
+    final results = await _farmingService.getRecommendationsForCurrentLocation(
+      cropType: cropType,
+      climateChallenge: climateChallenge,
+    );
+    
+    // Check if widget is still mounted before calling setState
+    if (mounted) {
       setState(() {
         _searchResults = results;
         _hasSearched = true;
         _isLoading = false;
       });
-    } catch (e) {
+    }
+  } catch (e) {
+    // Check if widget is still mounted before calling setState
+    if (mounted) {
       setState(() {
         _searchResults = null;
         _hasSearched = true;
@@ -741,4 +752,5 @@ class _SearchScreenState extends State<SearchScreen> {
       );
     }
   }
+}  
 }

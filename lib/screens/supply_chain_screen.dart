@@ -64,9 +64,8 @@ class _SupplyChainScreenState extends State<SupplyChainScreen> {
     // Default farmer view
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFFE5F0E7),
         elevation: 0,
-        
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, color: Color(0xFF5F8F58)),
           onPressed: () => Navigator.pop(context),
@@ -78,7 +77,7 @@ class _SupplyChainScreenState extends State<SupplyChainScreen> {
             icon: Container(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: Color(0xFFE8F5E9),
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Row(

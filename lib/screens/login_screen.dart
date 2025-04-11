@@ -292,39 +292,45 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   
   Future<void> _submitForm() async {
-    if (_formKey.currentState!.validate()) {
-      if (!mounted) return; // 👈 Check before setState
-      setState(() {
-        _isLoading = true;
-      });
+  if (_formKey.currentState!.validate()) {
+    if (!mounted) return;
+    setState(() {
+      _isLoading = true;
+    });
 
-      try {
-        final authService = Provider.of<AuthService>(context, listen: false);
-        if (_isSignUp) {
-          await authService.signUp(
-            _nameController.text,
-            _emailController.text,
-            _passwordController.text,
-            _isFarmer ? 'farmer' : 'hobbyist',
-          );
-        } else {
-          await authService.signIn(
-            _emailController.text,
-            _passwordController.text,
-          );
-        }
-      } catch (e) {
-        if (!mounted) return; // 👈 Check before showing a SnackBar
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString())),
+    try {
+      final authService = Provider.of<AuthService>(context, listen: false);
+      if (_isSignUp) {
+        await authService.signUp(
+          _nameController.text,
+          _emailController.text,
+          _passwordController.text,
+          _isFarmer ? 'farmer' : 'hobbyist',
         );
-      } finally {
-        if (!mounted) return; // 👈 Check before final setState
-        setState(() {
-          _isLoading = false;
-        });
+      } else {
+        await authService.signIn(
+          _emailController.text,
+          _passwordController.text,
+        );
       }
+      
+      // Add navigation here to redirect after successful login
+      if (mounted && authService.isLoggedIn) {
+        Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
+      }
+      
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toString())),
+      );
+    } finally {
+      if (!mounted) return;
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
+}
 
 }

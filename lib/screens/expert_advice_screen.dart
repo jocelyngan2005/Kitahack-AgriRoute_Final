@@ -64,7 +64,7 @@ class _AdviceScreenState extends State<ExpertAdviceScreen> {
     });
 
     try {
-      final String geminiApiKey = "AIzaSyB_haRU_xiO1kHVeL4_U1YuGElZAOMGv8s"; 
+      final String geminiApiKey = "YOUR_API_KEY"; 
       final url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=$geminiApiKey";
 
       final requestPayload = {
